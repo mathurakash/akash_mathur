@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash Mathur - Python Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+    <style>
+        /* Basic Reset & Typography (unchanged from previous) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    width: 60px;
+    height: 4px;
+    background-color: #3498db;
+    border-radius: 2px;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+ul {
+    list-style: none;
+}
+
+.section-padding {
+    padding: 85px 0;
+}
+
+.bg-light {
+    background-color: #ecf0f1;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* New: Top Bar */
+.top-bar {
+    background: #34495e; /* Darker shade */
+    color: #ecf0f1;
+    padding: 10px 0;
+    font-size: 0.9em;
+}
+
+.top-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+}
+
+.top-bar .contact-info span {
+    margin-right: 25px;
+}
+
+.top-bar .contact-info i, .top-bar .social-icons i {
+    margin-right: 8px;
+    color: #3498db; /* Icon color */
+}
+
+.top-bar .social-icons a {
+    color: #ecf0f1;
+    font-size: 1.2em;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.top-bar .social-icons a:hover {
+    color: #3498db;
+}
+
+
+/* Header & Navigation (minor change for top-bar spacing) */
+header {
+    background: #2c3e50;
+    color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: sticky; /* Makes nav sticky */
+    top: 0; /* Sticks to the top */
+    z-index: 1000; /* Ensures it's above other content */
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: #fff;
+    font-weight: 400;
+    padding: 5px 0;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #3498db;
+    transition: width 0.3s ease-in-out;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section (unchanged from previous) */
+.hero {
+    background: linear-gradient(to right, #34495e, #2c3e50);
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.hero .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-content {
+    display: flex; /* Make sure hero-text and hero-image are side by side */
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap; /* Allow wrapping for responsiveness */
+}
+
+.hero-text {
+    max-width: 600px;
+    text-align: left;
+}
+
+.hero h2 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.hero h3 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #bdc3c7;
+}
+
+.hero p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color: #ecf0f1;
+}
+
+.hero-image img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 5px solid #3498db;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.btn {
+    display: inline-block;
+    background: #3498db;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #2980b9;
+}
+
+/* About Section (unchanged from previous) */
+.about-section p {
+    font-size: 1.1em;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    text-align: center;
+}
+
+/* Skills Section (unchanged from previous) */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.skill-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.skill-item img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+}
+
+.skill-item span {
+    display: block;
+    font-weight: 500;
+    color: #555;
+}
+
+/* New: Experience & Education Timeline Styling */
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: #3498db;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-dot {
+    height: 20px;
+    width: 20px;
+    background-color: #3498db;
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    border: 3px solid #fff;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+    right: -10px;
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+    left: -10px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background-color: #fff;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.timeline-content h3 {
+    margin-bottom: 5px;
+    color: #3498db;
+}
+
+.timeline-content .company {
+    color: #555;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.timeline-content .dates {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.timeline-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    color: #666;
+    font-size: 0.95em;
+}
+
+.timeline-content ul li {
+    margin-bottom: 5px;
+}
+
+
+/* Projects Section (unchanged from previous) */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.project-card h3 {
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.project-card p {
+    font-size: 0.95em;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.project-link {
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+/* New: Resume Section */
+.resume-section {
+    text-align: center;
+}
+
+.resume-section .btn {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+}
+
+.resume-section .btn i {
+    margin-right: 10px;
+}
+
+.resume-note {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+
+/* Contact Section (updated icon usage) */
+.contact-section p {
+    text-align: center;
+    font-size: 1.1em;
+    margin-bottom: 40px;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1em;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.contact-item:hover {
+    color: #3498db;
+}
+
+.contact-item i { /* Changed from img to i for Font Awesome */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em; /* Adjust icon size */
+    color: #3498db;
+}
+
+/* Footer (unchanged from previous) */
+footer {
+    background: #2c3e50;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .top-bar .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .top-bar .contact-info span {
+        margin: 0 10px;
+        white-space: nowrap; /* Prevent phone/email from breaking */
+    }
+
+    nav .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        margin-top: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 15px 10px 15px;
+    }
+
+    .hero .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .hero h2 {
+        font-size: 2.8em;
+    }
+
+    .hero h3 {
+        font-size: 1.5em;
+    }
+
+    .hero-image {
+        margin-top: 40px;
+    }
+
+    .skills-grid, .projects-grid, .contact-links {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .contact-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Responsive for Timeline */
+    .timeline::after {
+        left: 31px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-item:nth-child(even) {
+        left: 0%;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 20px;
+        right: auto;
+    }
+
+    .timeline-content {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.5em;
+    }
+
+    nav ul li {
+        margin: 0 10px 10px 10px;
+    }
+
+    .hero h2 {
+        font-size: 2.2em;
+    }
+
+    .hero h3 {
+        font-size: 1.2em;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    .skill-item {
+        padding: 15px;
+    }
+
+    .project-card {
+        padding: 20px;
+    }
+
+    .contact-item {
+        font-size: 1em;
+    }
+
+    .top-bar .contact-info span {
+        margin: 0 5px;
+        font-size: 0.8em;
+    }
+    .top-bar .social-icons a {
+        margin-left: 10px;
+        font-size: 1em;
+    }
+}
+/*Social media css*/
+.icon-bar {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.icon-bar a:hover {
+  background-color: #000;
+}
+
+.facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.google {
+  background: #dd4b39;
+  color: white;
+}
+
+.linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.youtube {
+  background: #bb0000;
+  color: white;
+}
+.github {
+  background: #bb0000;
+  color: white;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span><i class="fas fa-phone-alt"></i> +91-8076165992</span>
+                <span><i class="fas fa-envelope"></i> mathurakash700@gmail.com</span>
+            </div>
+            <div class="social-icons">
+                <a href="www.linkedin.com/in/akash-m-824269135" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/mathurakash" target="_blank"><i class="fab fa-github"></i></a>
+                <!-- Add more social links if needed -->
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="container">
+                <h1 class="logo" style="color: white;"><u>Akash Mathur</h1>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                </u>
+            </div>
+        </nav>
+    </header>
+<!--social media icons-->
+
+<div class="icon-bar" style="z-index:1;">
+  <!-- <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
+  <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>  -->
+  <a href="mathurakash700@gmail.com" class="google"><i class="fa fa-google"></i></a> 
+  <a href="www.linkedin.com/in/akash-m-824269135" class="linkedin"><i class="fa fa-linkedin"></i></a>
+  <a href="https://github.com/mathurakash" class="github"><i class="fa fa-github"></i></a>
+  <!-- <a href="#" class="youtube"><i class="fa fa-youtube"></i></a>  -->
+</div>
+
+    <div class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h2>Hi, I'm Akash Mathur</h2>
+                        <h3>A Passionate Python Developer</h3>
+                        <p>Crafting efficient and scalable solutions with Python and a knack for problem-solving.</p>
+                        <a href="#projects" class="btn">View My Work</a>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://media.licdn.com/dms/image/v2/D5635AQGABJVYVCBHIQ/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1707971392192?e=1760637600&v=beta&t=sOsXzjiJPxDfVsCTkaK3OYdlq-SmCPXSM2SpN2FpL1Y" alt="Akash Mathur">
+                    </div>
+                </div>
+            </div>
+        </div>
+    <main>
+        <section id="about" class="about-section section-padding">
+            <div class="container">
+                <h2>About Me</h2>
+                <p>
+                    I'm a Python developer with 3+ years of experience in building web applications, automating tasks, and working with data. My expertise spans across Django, Flask, FastAPI, data analysis with Pandas, and various API integrations. I love tackling complex challenges and delivering clean, well-documented code.
+                Around 3 years of experience in full product life cycle development including software design, development, implementation, documentation, and maintenance. Hands-on expertise in Python, Django, FastAPI, Docker, PostgreSQL, AWS. Experience with Message Queue Systems (RabbitMQ, Redis) and Agile methodology. Proficient in designing and developing client-server and web applications, microservices, and distributed systems. Strong problem-solving, troubleshooting, and communication skills with a proven ability to work in cross-functional teams.
+                </p>
+                <p>
+                    Outside of coding, I enjoy watching cricket and amime.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section section-padding bg-light">
+            <div class="container">
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <img src="https://img.icons8.com/color/48/000000/python.png" alt="Python Icon">
+                        <span>Python</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://img.icons8.com/color/48/000000/django.png" alt="Django Icon">
+                        <span>Django</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://res.cloudinary.com/harendra21/image/upload/v1742473055/withcodeexample.com/getting-started-with-python-fastapi-a-comprehensive-guide_tnigh2.jpg" alt="Flask Icon">
+                        <span>Fast API</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1163px-Postgresql_elephant.svg.png" alt="PostgreSQL Icon">
+                        <span>PostgreSQL</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://img.icons8.com/color/48/000000/git.png" alt="Git Icon">
+                        <span>Git</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="https://img.icons8.com/color/48/000000/docker.png" alt="Docker Icon">
+                        <span>Docker</span>
+                    </div>
+                    <!-- Add more skill items as needed -->
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="experience-section section-padding">
+            <div class="container">
+                <h2>Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Consultant  <span class="company">@ Snapon Business Solutions.</span></h3>
+                            <p class="dates">May 2024 – Present</p>
+                            <ul>
+                                <li>Led development of scalable RESTful APIs using Django REST Framework, handling 1M+ requests daily.</li>
+                                <li>Designed and implemented a data processing pipeline using Pandas and NumPy for analytics.</li>
+                                <li>Mentored junior developers and conducted code reviews, improving team's code quality.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Software Developer <span class="company">@ TradeIndia Infocom Network Ltd.</span></h3>
+                            <p class="dates">Sep 2022 – Apr 2024</p>
+                            <ul>
+                                <li>Developed and maintained features for a Django based e-commerce platform.</li>
+                                <li>Migrated system from Django & Perl to FastAPI microservices, improving scalability and increasing visits by 18%</li>
+                                <li>Automated daily reports using Python scripting, reducing manual effort by 50%.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Add more experience items as needed -->
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="education-section section-padding bg-light">
+            <div class="container">
+                <h2>Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>B.Tech (CSE) <span class="company">@ Maharishi Dayanand University</span></h3>
+                            <p class="dates">2017 – 2021</p>
+                            <p>78% Aggregate</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Senior Secondary <span class="company">@ Kendriya Vidyalaya</span></h3>
+                            <p class="dates">2015 – 2017</p>
+                            <p>72% Aggregate</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Higher Secondary <span class="company">@ Kendriya Vidyalaya</span></h3>
+                            <p class="dates">2015</p>
+                            <p>9.0 CGPA</p>
+                        </div>
+                    </div>
+                    <!-- Add more education items as needed -->
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section section-padding">
+            <div class="container">
+                <h2>My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>TradeIndia Portal</h3>
+                        <p>Migrated system from Django & Perl to FastAPI microservices, improving scalability and increasing visits by 18%</p>
+                        <a href="https://www.tradeindia.com/" target="_blank" class="project-link">View Project</a>
+                        <a href="#" target="_blank" class="project-link">Organization : TradeIndia Infocom Network Ltd.</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Tradekhata</h3>
+                        <p>Developed a web-based invoice management system enabling invoice generation, PDF export, and transaction management for small businesses.</p>
+                        <a href="https://tradekhata.tradeindia.com/" target="_blank" class="project-link">View Project</a>
+                        <a href="#" target="_blank" class="project-link">Organization : TradeIndia Infocom Network Ltd.</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Synthesia AI Video Service</h3>
+                        <p>Built Synthesia API integration for AI-generated videos in multiple languages; engineered Perl interface to merge profile-specific data, contributing to a 13900% profit margin.</p>
+                        <a href="#" target="_blank" class="project-link">Organization : TradeIndia Infocom Network Ltd.</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>NextGen – Data Receipt</h3>
+                        <p>Tool owner; improved performance by 8% by implementing multithreading for downloading and processing OEM source files.</p>
+                        <a href="#" target="_blank" class="project-link">Organization : Snapon Business Solutions</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Common Tool Installer (CTI)</h3>
+                        <p>A centralized place from where we can manage all the, tools there release process,
+Track tool history along with the mend scan reports.
+</p>
+                        <a href="#" target="_blank" class="project-link">Organization : Snapon Business Solutions</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Image Processing Tool (IPP)</h3>
+                        <p>Developed Python-based scripts to process images (SVG, PNG, TIFF) on parameters like DPI, pixel ratio, and resolution, improving image quality by 20%.
+</p>
+                        <a href="#" target="_blank" class="project-link">Organization : Snapon Business Solutions</a>
+                    </div>
+                    <!-- Add more project cards -->
+                </div>
+            </div>
+        </section>
+
+
+        <section id="resume" class="resume-section section-padding bg-light">
+            <div class="container text-center">
+                <h2>Download My Resume</h2>
+                <p>A detailed overview of my skills, experience, and education.</p>
+                <a href="Akash Mathur Python Developer.pdf" download class="btn btn-primary">
+                    <i class="fas fa-download"></i> Download Resume (PDF)
+                </a>
+                <p class="resume-note">Having trouble? <a href="mailto:mathurakash700@gmail.com">Email me</a> for a copy.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section section-padding">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <p>Have a project in mind or just want to chat? Feel free to reach out!</p>
+                <div class="contact-links">
+                    <a href="mailto:your.email@example.com" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>mathurakash700@gmail.com</span>
+                    </a>
+                    <a href="tel:+1234567890" class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+91-8076165992</span>
+                    </a>
+                    <a href="www.linkedin.com/in/akash-m-824269135" target="_blank" class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/mathurakash" target="_blank" class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Akash Mathur. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5e1ad0fd27773e0d832d19bc/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
